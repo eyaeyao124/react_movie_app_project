@@ -55,6 +55,7 @@ function LandingPage() {
                                     `${IMAGE_BASE_URL}w500${movie.poster_path}` : null}
                                 movieId={movie.id}
                                 movieName={movie.original_title}
+                                movieAverage={movie.vote_average}
                             />
                     </React.Fragment>    
                 ))}

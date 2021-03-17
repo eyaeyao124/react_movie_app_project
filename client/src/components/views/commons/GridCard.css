@@ -1,0 +1,11 @@
+.movie-box {
+    background-color: rgba(0, 0, 0, 0.8);
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    padding: 10px;
+}
+
+.movie-box div, .movie-box span{
+    color:#fff;
+} 
