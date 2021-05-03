@@ -25,6 +25,7 @@ function MovieDetailPage(props) {
 
         let endpointForMovieInfo = `${API_URL}movie/${movieId}?api_key=${API_KEY}&language=en-US`;
         fetchDetailInfo(endpointForMovieInfo)
+        console.log(endpointForMovieInfo)
         // axios.post('/api/comment/getComments', movieVariable)
         //     .then(response => {
         //         console.log(response)
@@ -109,6 +110,7 @@ function MovieDetailPage(props) {
                             !LoadingForCasts ? Casts.map((cast, index) => (
                                 cast.profile_path &&
                                 <GridCards
+                                    key={index}
                                     image={cast.profile_path ?
                                         `${IMAGE_BASE_URL}w500${cast.profile_path}` : null}
                                     characterName={cast.name}

@@ -24,7 +24,9 @@ function GridCards(props) {
                 <div style={{ position: 'relative' }}>
 
                     <img style={{ width: '100%', height: '320px' }} src={props.image} alt={props.characterName} />
-
+                    <div className="movie-box">
+                        <div style={{fontWeight:"bold"}}>{props.characterName}</div>
+                    </div>
                 </div>
             </Col>
         )
