@@ -9,6 +9,7 @@ import GridCards from '../commons/GridCard';
 import MainImage from '../LandingPage/Sections/MainImage';
 import MovieInfo from './Sections/MovieInfo';
 import Favorite from './Sections/Favorite';
+import Comment from './Sections/Comment';
 function MovieDetailPage(props) {
     const movieId = props.match.params.id
     const [Movie, setMovie] = useState([])
@@ -25,17 +26,6 @@ function MovieDetailPage(props) {
 
         let endpointForMovieInfo = `${API_URL}movie/${movieId}?api_key=${API_KEY}&language=en-US`;
         fetchDetailInfo(endpointForMovieInfo)
-        console.log(endpointForMovieInfo)
-        // axios.post('/api/comment/getComments', movieVariable)
-        //     .then(response => {
-        //         console.log(response)
-        //         if (response.data.success) {
-        //             console.log('response.data.comments', response.data.comments)
-        //             setCommentLists(response.data.comments)
-        //         } else {
-        //             alert('Failed to get comments Info')
-        //         }
-        //     })
 
     }, [])
 
@@ -126,8 +116,7 @@ function MovieDetailPage(props) {
                 </div> */}
 
                 {/* Comments */}
-                {/* <Comments movieTitle={Movie.original_title} CommentLists={CommentLists} postId={movieId} refreshFunction={updateComment} /> */}
-
+                <Comment userFrom={localStorage.getItem('userId')} movieId={ movieVariable.movieId} />
             </div>
 
         </div>
