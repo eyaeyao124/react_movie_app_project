@@ -14,7 +14,6 @@ function MovieDetailPage(props) {
     const movieId = props.match.params.id
     const [Movie, setMovie] = useState([])
     const [Casts, setCasts] = useState([])
-    const [CommentLists, setCommentLists] = useState([])
     const [LoadingForMovie, setLoadingForMovie] = useState(true)
     const [LoadingForCasts, setLoadingForCasts] = useState(true)
     const [ActorToggle, setActorToggle] = useState(false)

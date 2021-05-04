@@ -1,7 +1,10 @@
 import React,{useEffect,useState} from 'react'
 import Axios from 'axios'
+import { useSelector } from "react-redux";
 
 function Comment(props) {
+    const user = useSelector(state => state.user)
+
     const [CommentLists, setCommentLists] = useState([])
     const [text, setText] = useState("");
 
@@ -24,6 +27,7 @@ function Comment(props) {
     }
 
     const onClickComment = () => {
+        if(!user.userData.isAuth) return alert('로그인후 이용가능합니다')
         Axios.post('/api/comment/addComment',variables)
             .then(response => {
                 if(response.data.success) {
@@ -50,18 +54,38 @@ function Comment(props) {
         getCommentsList()
     },[])
 
-    return (
-        <div>
+    if(user.userData && !user.userData.isAuth) {
+        return (
             <div>
-                {
-                    CommentLists.map(list => { return <div>{list.comments}</div>})
-                }
+                <div>
+                    {
+                        CommentLists.map((list, index) => { 
+                            return <div key={index}>{list.comments} </div>
+                        })
+                    }
+                </div>
+                <form onSubmit={onSubmitComment}>
+                    <textarea onChange={textHandler} value={text}></textarea><button>Submit</button>
+                </form>
             </div>
-            <form onSubmit={onSubmitComment}>
-                <textarea onChange={textHandler} value={text}></textarea><button>안뇽! 난 버튼!</button>
-            </form>
-        </div>
-    )
+        )
+    }else{
+        return (
+            <div>
+                <div>
+                    {
+                        CommentLists.map((list, index) => { 
+                            if(userFrom === list.userFrom) { return <div key={index}>{list.comments} <span>수정</span><span>삭제</span></div>}
+                            else{ return <div key={index}>{list.comments} </div>}
+                        })
+                    }
+                </div>
+                <form onSubmit={onSubmitComment}>
+                    <textarea onChange={textHandler} value={text}></textarea><button>Submit</button>
+                </form>
+            </div>
+        )
+    }
 }
 
 export default Comment

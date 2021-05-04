@@ -13,6 +13,7 @@ router.post('/getComments', (req, res) => {
 router.post('/addComment', (req, res) => {
 
     const comment = new Comment(req.body)
+
     comment.save((err,doc) => {
         if(err) return res.status(400).send(err)
         return res.status(200).json({success: true})
